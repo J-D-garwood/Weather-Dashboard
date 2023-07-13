@@ -20,6 +20,7 @@ fetch(latLonURL)
               console.log(data)
               const name = data.city.name
               const weatherdata = data.list
+              let filtered_data = [weatherdata[0], weatherdata[8], weatherdata]
               console.log(name)
               console.log(weatherdata)
             })
