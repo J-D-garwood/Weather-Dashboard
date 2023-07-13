@@ -7,14 +7,10 @@ fetch(latLonURL)
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       const cityResults = data
       if (cityResults.length>0) {
         let latitude = cityResults[0].lat 
-        console.log(latitude)
         let longitude = cityResults[0].lon
-        console.log(longitude)
-        let name = cityResults[0].name
         let weatherURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+latitude+"&lon="+longitude+"&appid=ccd3b257380698032fa26a741a7d733a"
         fetch(weatherURL)
             .then(function (response) {
@@ -22,7 +18,10 @@ fetch(latLonURL)
             })
             .then(function(data) {
               console.log(data)
-              weatherResults = data
+              const name = data.city.name
+              const weatherdata = data.list
+              console.log(name)
+              console.log(weatherdata)
             })
       } else {
         console.log("no results returned")
