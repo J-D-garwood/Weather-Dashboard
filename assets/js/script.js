@@ -1,4 +1,5 @@
 const secondsIn24hrs = 86400
+const searchHist = document.getElementById("search-history")
 const Btn = document.getElementById("Search-Btn")
 const input = document.getElementById("search-bar")
 const forecast_ls = document.getElementById("forecasts")
@@ -6,12 +7,26 @@ const todays_date = document.getElementById("City_date")
 const todays_temp = document.getElementById("Temp")
 const todays_wind = document.getElementById("Wind")
 const todays_humidity = document.getElementById("Humidity")
+const icon_today = document.getElementById("wicon1")
 todays_date.textContent = dayjs().format('MM/DD/YYYY')
+
+function addRecentSearch(name) {
+  let new_search_container = document.createElement("div")
+  new_search_container.setAttribute("class", "row border mt-2")
+  let new_search = document.createElement("button")
+  new_search.addEventListener("click", function(event) {
+    event.preventDefault()
+    input.value = name 
+    Btn.click()
+  })
+  new_search.textContent = name
+  new_search_container.appendChild(new_search)
+  searchHist.appendChild(new_search_container)
+}
 
 function Search(event) {
   event.preventDefault()
   const SearchQuery = input.value
-  console.log(SearchQuery)
   const latLonURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + SearchQuery + "&limit=50&appid=353d30c1504d5c8e14a337880bf95523"
 
   fetch(latLonURL)
@@ -32,9 +47,15 @@ function Search(event) {
                 return response.json();
               })
               .then(function(data) {
+                console.log(data)
                 const name = data.city.name
+                addRecentSearch(name)
                 const weatherdata = data.list
                 const today = weatherdata[0]
+                var todaysicon = today.weather[0].icon
+                console.log(todaysicon)
+                var iconurl = "http://openweathermap.org/img/w/" + todaysicon + ".png";
+                icon_today.setAttribute("src", iconurl)
                 var temp = (today.main.temp - 273.15)*(9/5)+32
                 todays_date.textContent = name + " " + dayjs().format('MM/DD/YYYY')
                 todays_temp.textContent = "Temp: "+ temp.toFixed(2) + "\u00B0F"
@@ -53,7 +74,6 @@ function Search(event) {
                   var date = Point.dt_txt
                   date = date.split(" ")[0]
                   date = date.split("-")
-                  console.log(date)
                   date = date[1] + "/" + date[2] + "/" + date[0]
                   temp = (Point.main.temp - 273.15)*(9/5)+32
 
@@ -66,6 +86,15 @@ function Search(event) {
                   var printed_date = document.createElement("h5")
                   printed_date.textContent = date
                   forecast_card.appendChild(printed_date)
+
+                  var icon_container = document.createElement("div")
+                  let icon = document.createElement("img")
+                  let iconcode = Point.weather[0].icon
+                  let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
+                  icon.setAttribute("src", iconurl)
+                  icon_container.appendChild(icon)
+                  forecast_card.appendChild(icon_container)
+
 
                   var forcast_temp = document.createElement("p")
                   forcast_temp.textContent = "temp: " + temp.toFixed(2) + "\u00B0F"
