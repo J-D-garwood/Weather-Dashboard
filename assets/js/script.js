@@ -9,8 +9,34 @@ const todays_wind = document.getElementById("Wind")
 const todays_humidity = document.getElementById("Humidity")
 const icon_today = document.getElementById("wicon1")
 todays_date.textContent = dayjs().format('MM/DD/YYYY')
+var recent_searches = localStorage.getItem("recentSearch-List")
+
+if (recent_searches!==null) {
+  var prior_search_list = recent_searches.split("|")
+  prior_search_list.pop()
+  console.log(prior_search_list)
+  prior_search_list.forEach(placeName => {
+    let new_search_container = document.createElement("div")
+    new_search_container.setAttribute("class", "row border mt-2")
+    let new_search = document.createElement("button")
+    new_search.addEventListener("click", function(event) {
+      event.preventDefault()
+      input.value = placeName 
+      Btn.click()
+    })
+    new_search.textContent = placeName
+    new_search_container.appendChild(new_search)
+    searchHist.appendChild(new_search_container)
+  })
+}
 
 function addRecentSearch(name) {
+  if (recent_searches==null) {
+    recent_searches = name + "|"
+  } else {
+    recent_searches = recent_searches + name + "|"
+  }
+  localStorage.setItem("recentSearch-List", recent_searches)
   let new_search_container = document.createElement("div")
   new_search_container.setAttribute("class", "row border mt-2")
   let new_search = document.createElement("button")
@@ -81,11 +107,14 @@ function Search(event) {
                   forecast_col.setAttribute("class", "col")
 
                   var forecast_card = document.createElement("div")
-                  forecast_card.setAttribute("class", "card")
+                  forecast_card.setAttribute("class", "card text-white bg-secondary mb-3")
+
+                  var forecast_card_body = document.createElement("div")
+                  forecast_card_body.setAttribute("class", "card-body")
 
                   var printed_date = document.createElement("h5")
                   printed_date.textContent = date
-                  forecast_card.appendChild(printed_date)
+                  forecast_card_body.appendChild(printed_date)
 
                   var icon_container = document.createElement("div")
                   let icon = document.createElement("img")
@@ -93,21 +122,22 @@ function Search(event) {
                   let iconurl =  "http://openweathermap.org/img/w/" + iconcode + ".png";
                   icon.setAttribute("src", iconurl)
                   icon_container.appendChild(icon)
-                  forecast_card.appendChild(icon_container)
+                  forecast_card_body.appendChild(icon_container)
 
 
                   var forcast_temp = document.createElement("p")
-                  forcast_temp.textContent = "temp: " + temp.toFixed(2) + "\u00B0F"
-                  forecast_card.appendChild(forcast_temp)
+                  forcast_temp.textContent = "Temp: " + temp.toFixed(2) + "\u00B0F"
+                  forecast_card_body.appendChild(forcast_temp)
 
                   var forcast_wind = document.createElement("p")
-                  forcast_wind.textContent = "wind: " + Point.wind.speed + " MPH"
-                  forecast_card.appendChild(forcast_wind)
+                  forcast_wind.textContent = "Wind: " + Point.wind.speed + " MPH"
+                  forecast_card_body.appendChild(forcast_wind)
 
                   var forcast_humid = document.createElement("p")
-                  forcast_humid.textContent = "humidity: " + Point.main.humidity + "%"
-                  forecast_card.appendChild(forcast_humid)
+                  forcast_humid.textContent = "Humidity: " + Point.main.humidity + "%"
+                  forecast_card_body.appendChild(forcast_humid)
 
+                  forecast_card.appendChild(forecast_card_body)
                   forecast_col.appendChild(forecast_card)
                   forecast_ls.appendChild(forecast_col)
                 }
