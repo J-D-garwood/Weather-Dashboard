@@ -14,7 +14,6 @@ var recent_searches = localStorage.getItem("recentSearch-List")
 if (recent_searches!==null) {
   var prior_search_list = recent_searches.split("|")
   prior_search_list.pop()
-  console.log(prior_search_list)
   prior_search_list.forEach(placeName => {
     let new_search_container = document.createElement("div")
     new_search_container.setAttribute("class", "row border mt-2")
@@ -28,6 +27,9 @@ if (recent_searches!==null) {
     new_search_container.appendChild(new_search)
     searchHist.appendChild(new_search_container)
   })
+  while (searchHist.childElementCount > 10) { 
+    searchHist.children[0].remove();
+  } 
 }
 
 function addRecentSearch(name) {
@@ -38,8 +40,9 @@ function addRecentSearch(name) {
   }
   localStorage.setItem("recentSearch-List", recent_searches)
   let new_search_container = document.createElement("div")
-  new_search_container.setAttribute("class", "row border mt-2")
+  new_search_container.setAttribute("class", "row mt-2")
   let new_search = document.createElement("button")
+  new_search.setAttribute("id", "recent_search_btn")
   new_search.addEventListener("click", function(event) {
     event.preventDefault()
     input.value = name 
@@ -52,6 +55,9 @@ function addRecentSearch(name) {
 
 function Search(event) {
   event.preventDefault()
+  while (searchHist.childElementCount > 10) { 
+    searchHist.children[0].remove();
+  } 
   const SearchQuery = input.value
   const latLonURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + SearchQuery + "&limit=50&appid=353d30c1504d5c8e14a337880bf95523"
 

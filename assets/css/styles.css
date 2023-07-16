@@ -2,3 +2,15 @@
     background-color: rgb(73, 73, 172);
     color: white;
 }*/
+button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    border-color: white;
+    background-color: rgb(170, 170, 170);
+}
+
+.inner_input {
+    padding-left: 25px;
+    padding-right: 25px;
+}
