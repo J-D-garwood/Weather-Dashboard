@@ -10,7 +10,20 @@ button {
     background-color: rgb(170, 170, 170);
 }
 
+#header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    font-size: 50px;
+    background-color: blue;
+}
+
 .inner_input {
     padding-left: 25px;
     padding-right: 25px;
+}
+
+#Search-Btn {
+    color: white;
+    background-color: rgb(48, 189, 232);
 }

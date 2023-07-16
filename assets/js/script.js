@@ -11,6 +11,17 @@ const icon_today = document.getElementById("wicon1")
 todays_date.textContent = dayjs().format('MM/DD/YYYY')
 var recent_searches = localStorage.getItem("recentSearch-List")
 
+const day1 = document.getElementById("day1")
+day1.textContent =dayjs().add(1, 'days').format('MM/DD/YYYY')
+const day2 = document.getElementById("day2")
+day2.textContent =dayjs().add(2, 'days').format('MM/DD/YYYY')
+const day3 = document.getElementById("day3")
+day3.textContent =dayjs().add(3, 'days').format('MM/DD/YYYY')
+const day4 = document.getElementById("day4")
+day4.textContent =dayjs().add(4, 'days').format('MM/DD/YYYY')
+const day5 = document.getElementById("day5")
+day5.textContent =dayjs().add(5, 'days').format('MM/DD/YYYY')
+
 if (recent_searches!==null) {
   var prior_search_list = recent_searches.split("|")
   prior_search_list.pop()
