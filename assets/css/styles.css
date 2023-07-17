@@ -2,6 +2,8 @@
     background-color: rgb(73, 73, 172);
     color: white;
 }*/
+
+
 button {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -10,12 +12,27 @@ button {
     background-color: rgb(170, 170, 170);
 }
 
+#search-box {
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+}
+
+#search-bar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
 #header {
     padding-top: 15px;
     padding-bottom: 15px;
     color: white;
     font-size: 50px;
-    background-color: blue;
+    font-weight: bold;
+    /*background-color: #009FFD;*/
+    background-image: url("../headerbackground.svg");
+    background-size: 1500px;
 }
 
 .inner_input {
