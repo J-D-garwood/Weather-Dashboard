@@ -13,25 +13,32 @@
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"
     ></script>
-  <title>Bootstrap UI Components</title>
+  <title>Weather Dashboard</title>
 </head>
+
 <body>
+    <!--Page Header-->
     <div id="header" class="row justify-content-center align-items-center">Weather Dashboard</div>
     <div class="row border">
+        <!--Input Section-->
         <div id="input" class="col-md-4 ml-8">
             <div class="inner_input">
+                <!--Search Bar-->
                 <div id="search-box" class="row">
                     <h1>Search for a city:</h1>
                     <input id="search-bar">
                     <button id="Search-Btn" class="mt-2 bg-primary">Search</button>
                 </div>
+                <!--Search History Elements-->
                 <div id="search-history-title" class="row mt-2">
                     <h3>Search History</h3>
                 </div>
                 <div id="search-history" class="col justify-content-around"></div>
             </div>
         </div>
+        <!--Output Section-->
         <div id="output" class="col-md-8">
+            <!--Current Day Card-->
             <div class="card mb-2 mt-3" style="border: 0.5px solid black">
                 <div class="card-body">
                     <div id="current-day" class="row">
@@ -42,6 +49,7 @@
                     </div>
                 </div>
             </div>
+            <!--Next Five Days-->
             <div id="next-five">
                 <h3>5-Day Forecast: </h3>
                 <div id="forecasts" class="row justify-content-around">

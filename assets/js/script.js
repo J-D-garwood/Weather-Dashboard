@@ -1,3 +1,4 @@
+//defining variables; grabbing html elements
 const secondsIn24hrs = 86400
 const searchHist = document.getElementById("search-history")
 const Btn = document.getElementById("Search-Btn")
@@ -11,6 +12,7 @@ const icon_today = document.getElementById("wicon1")
 todays_date.textContent = dayjs().format('MM/DD/YYYY')
 var recent_searches = localStorage.getItem("recentSearch-List")
 
+//setting dates on forecast cards
 const day1 = document.getElementById("day1")
 day1.textContent =dayjs().add(1, 'days').format('MM/DD/YYYY')
 const day2 = document.getElementById("day2")
@@ -22,6 +24,7 @@ day4.textContent =dayjs().add(4, 'days').format('MM/DD/YYYY')
 const day5 = document.getElementById("day5")
 day5.textContent =dayjs().add(5, 'days').format('MM/DD/YYYY')
 
+//generating recent search button list
 if (recent_searches!==null) {
   var prior_search_list = recent_searches.split("|")
   prior_search_list.pop()
@@ -43,6 +46,7 @@ if (recent_searches!==null) {
   } 
 }
 
+//add new search to recent search button list
 function addRecentSearch(name) {
   if (recent_searches==null) {
     recent_searches = name + "|"
@@ -64,6 +68,7 @@ function addRecentSearch(name) {
   searchHist.appendChild(new_search_container)
 }
 
+//Search for a city function
 function Search(event) {
   event.preventDefault()
   while (searchHist.childElementCount > 10) { 
@@ -166,4 +171,5 @@ function Search(event) {
       });
   }
 
+  //Search button event listener
   Btn.addEventListener("click", Search)

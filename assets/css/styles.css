@@ -1,9 +1,4 @@
-/*.card {
-    background-color: rgb(73, 73, 172);
-    color: white;
-}*/
-
-
+/*button styles*/
 button {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -12,34 +7,38 @@ button {
     background-color: rgb(170, 170, 170);
 }
 
+/*Search Box Section*/
 #search-box {
     padding-bottom: 10px;
     border-bottom: 1px solid grey;
     margin-bottom: 10px;
 }
 
+/*Search Bar*/
 #search-bar {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
 }
 
+/*Header Section*/
 #header {
     padding-top: 15px;
     padding-bottom: 15px;
     color: white;
     font-size: 50px;
     font-weight: bold;
-    /*background-color: #009FFD;*/
-    background-image: url("../headerbackground.svg");
+    background-image: url("../images/headerbackground.svg");
     background-size: 1600px;
 }
 
+/*Inner Input Styling*/
 .inner_input {
     padding-left: 25px;
     padding-right: 25px;
 }
 
+/*Search Button Styling*/
 #Search-Btn {
     color: white;
     background-color: rgb(48, 189, 232);
