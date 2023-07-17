@@ -70,7 +70,7 @@ function Search(event) {
     searchHist.children[0].remove();
   } 
   const SearchQuery = input.value
-  const latLonURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/geo/1.0/direct?q=" + SearchQuery + "&limit=50&appid=353d30c1504d5c8e14a337880bf95523"
+  const latLonURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + SearchQuery + "&limit=50&appid=353d30c1504d5c8e14a337880bf95523/"
 
   fetch(latLonURL)
       .then(function (response) {
